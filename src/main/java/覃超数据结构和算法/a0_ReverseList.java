@@ -14,13 +14,14 @@ package 覃超数据结构和算法;
  * 链接：https://leetcode-cn.com/problems/reverse-linked-list
  * 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
  */
-public class ReverseList {
+public class a0_ReverseList {
     public static void main(String[] args) {
         ListNode L = new ListNode(1);
         L.next = new ListNode(2);
         L.next.next = new ListNode(3);
         System.out.println(L);
-        System.out.println(reverseList(L));
+//        System.out.println(reverseList(L));
+        System.out.println(recursiveReverseList(L));
     }
 
     /**
@@ -57,21 +58,25 @@ public class ReverseList {
      * 			    reverseList:head=5
      * 					终止返回
      * 				cur = 5
-     * 				4.next.next->4，即5->4
+     * 				4.next.next->4，即4->5->4
+     * 			    4.next=null, 即5->4
      * 			cur=5
-     * 			3.next.next->3，即4->3
+     * 			3.next.next->3，即3->4->3
+     * 		    3.next=null,即4->3
      * 		cur = 5
-     * 		2.next.next->2，即3->2
+     * 		2.next.next->2，即2->3->2
+     * 	    2.next=null,即3->2
      * 	cur = 5
-     * 	1.next.next->1，即2->1
+     * 	1.next.next->1，即1->2->1
+     * 	1.next=null,即2->1
      * @param head
      * @return
      */
     public static ListNode recursiveReverseList(ListNode head){
         if(head ==null ||  head.next==null) return head;
-        ListNode l = recursiveReverseList(head);
-        l.next.next = l;
-        l.next=null;
+        ListNode l = recursiveReverseList(head.next);
+        head.next.next = head;
+        head.next=null;
         return l;
     }
 }
