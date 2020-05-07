@@ -71,5 +71,4 @@ public class a1_SwapPairsInLinkedList {
 
         return zeroNode.next;
     }
-
 }
